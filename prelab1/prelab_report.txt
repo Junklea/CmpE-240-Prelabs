@@ -1,0 +1,56 @@
+Prelab
+
+int a = 0b00; // 2-bit unsigned integer
+int b = 0b00; // 2-bit unsigned integer
+int c = 0b00; // 2-bit unsigned integer
+
+if (a < 1) and (b < 3):
+	c = 0b00
+else if (a ^ b) < 2: // ^ means xor
+	c = 0b01
+else if a > b:
+	c = 0b10
+else:
+	c = 0b11
+
+
+Fill in the truth table. Change XX values to 00, 01, 10 or 11.
+
+a1a0b1b0 			c1c0
+0000 -> 00 -> 0		00
+0001 -> 01 -> 1		00
+0010 -> 02 -> 2		00
+0011 -> 03 -> 3		11
+0100 -> 10 -> 1		01
+0101 -> 11 -> 0		01
+0110 -> 12 -> 3		11
+0111 -> 13 -> 2		11
+1000 -> 20 -> 2		10
+1001 -> 21 -> 3		10
+1010 -> 22 -> 0		01
+1011 -> 23 -> 1		01
+1100 -> 30 -> 3		10
+1101 -> 31 -> 2		10
+1110 -> 32 -> 1		01
+1111 -> 33 -> 0		01
+
+You can use pqrs. Using a0a1b0b1 will be harder to read. Use p'q'r's' for prime forms.
+
+Used form: PoS or SoP (Erase what you did not use here)
+c0 = (p + q + r + s)(p + q + r + s')(p + q + r' + s)(p' + q + r + s)(p' + q + r + s')(p' + q' + r + s)(p' + q' + r + s')
+
+Used form: PoS or SoP (Erase what you did not use here)
+c1 = p'q'rs + p'qrs' + p'qrs + pq'r's' + pq'r's + pqr's' + pqr's
+
+
+Minimize c0
+c0 = [(p + q + r + s)(p + q + r + s')](p + q + r' + s)[(p' + q + r + s)(p' + q + r + s')][(p' + q' + r + s)(p' + q' + r + s')]
+   = (p + q + r)(p + q + r' + s)(p' + q + r)(p' + q' + r)
+   = (p + q + r)(p + q + r' + s)(p' + r)
+
+
+
+Minimize c1
+c1 = p'q'rs + (p'qrs' + p'qrs) + (pq'r's' + pq'r's) + (pqr's' + pqr's)
+   = p'q'rs + p'qr + (pq'r' + pqr')
+   = p'q'rs + p'qr + pr'
